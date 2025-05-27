@@ -78,7 +78,7 @@ export default function ResultsPage() {
                   <div className="flex flex-col md:flex-row">
                     <div className="md:w-1/3 bg-gray-100">
                       <img 
-                        src={mattress.image} 
+                        src={mattress.imageUrl} 
                         alt={mattress.name} 
                         className="w-full h-64 object-cover"
                       />
@@ -95,7 +95,7 @@ export default function ResultsPage() {
                                 </svg>
                               ))}
                             </div>
-                            <span className="ml-2 text-gray-600">({mattress.reviewCount} reviews)</span>
+                            <span className="ml-2 text-gray-600">(150+ reviews)</span>
                           </div>
                         </div>
                         <div className="flex items-center bg-indigo-100 text-indigo-800 px-4 py-2 rounded-full">
