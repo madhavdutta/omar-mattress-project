@@ -7,6 +7,7 @@ import QuizProgress from './QuizProgress'
 import QuizQuestion from './QuizQuestion'
 import QuizNavigation from './QuizNavigation'
 import LoadingScreen from './LoadingScreen'
+import Layout from './Layout'
 
 export default function QuizContainer() {
   const navigate = useNavigate()
@@ -194,35 +195,41 @@ export default function QuizContainer() {
   }
 
   if (isLoading) {
-    return <LoadingScreen />
+    return (
+      <Layout hideFooter={true}>
+        <LoadingScreen />
+      </Layout>
+    )
   }
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
-      <div className="bg-white rounded-lg shadow-lg p-6">
-        <h1 className="text-3xl font-bold text-center text-indigo-800 mb-2">
-          {quizData.title}
-        </h1>
-        <p className="text-center text-gray-600 mb-8">
-          {quizData.description}
-        </p>
-        
-        <QuizProgress currentStep={currentStep + 1} totalSteps={totalSteps} progress={progress} />
-        
-        <div className="my-8">
-          <QuizQuestion 
-            question={currentQuestion} 
-            questionNumber={currentStep + 1}
+    <Layout>
+      <div className="max-w-4xl mx-auto px-4 py-8">
+        <div className="bg-white rounded-lg shadow-lg p-6">
+          <h1 className="text-3xl font-bold text-center text-indigo-800 mb-2">
+            {quizData.title}
+          </h1>
+          <p className="text-center text-gray-600 mb-8">
+            {quizData.description}
+          </p>
+          
+          <QuizProgress currentStep={currentStep + 1} totalSteps={totalSteps} progress={progress} />
+          
+          <div className="my-8">
+            <QuizQuestion 
+              question={currentQuestion} 
+              questionNumber={currentStep + 1}
+            />
+          </div>
+          
+          <QuizNavigation 
+            currentStep={currentStep}
+            totalSteps={totalSteps}
+            onNext={handleNext}
+            onPrevious={handlePrevious}
           />
         </div>
-        
-        <QuizNavigation 
-          currentStep={currentStep}
-          totalSteps={totalSteps}
-          onNext={handleNext}
-          onPrevious={handlePrevious}
-        />
       </div>
-    </div>
+    </Layout>
   )
 }
