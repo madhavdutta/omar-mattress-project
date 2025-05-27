@@ -8,7 +8,7 @@ export default function EmbedPage() {
   useEffect(() => {
     // Generate embed code
     const code = `<iframe 
-  src="${window.location.origin}" 
+  src="${window.location.origin}/quiz" 
   width="100%" 
   height="700" 
   style="border: none; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);" 
@@ -59,7 +59,7 @@ export default function EmbedPage() {
           <h2 className="text-xl font-semibold text-gray-800 mb-4">Preview</h2>
           <div className="border border-gray-200 rounded-lg p-4 bg-gray-50">
             <iframe 
-              src="/"
+              src="/quiz"
               width="100%" 
               height="500" 
               style={{ border: 'none', borderRadius: '8px', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}
