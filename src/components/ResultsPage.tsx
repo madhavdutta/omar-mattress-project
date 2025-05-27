@@ -6,7 +6,7 @@ import FirmnessScale from './FirmnessScale'
 
 export default function ResultsPage() {
   const navigate = useNavigate()
-  const { results, answers } = useQuiz()
+  const { results } = useQuiz()
   
   useEffect(() => {
     // Redirect to quiz if no results

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { QuizQuestion as QuizQuestionType, QuizOption } from '@/types/quiz'
+import { QuizQuestion as QuizQuestionType } from '@/types/quiz'
 import { useQuiz } from '@/context/QuizContext'
 import RadioQuestion from './questions/RadioQuestion'
 import MultipleQuestion from './questions/MultipleQuestion'

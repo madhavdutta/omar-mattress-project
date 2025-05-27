@@ -1,16 +1,15 @@
 import { createContext, useContext, useState, ReactNode } from 'react'
-import { QuizData, QuizResults, QuizAnswer } from '@/types/quiz'
+import { QuizAnswer, QuizResults } from '@/types/quiz'
 
 interface QuizContextType {
   currentStep: number
   setCurrentStep: (step: number) => void
   answers: QuizAnswer[]
-  setAnswers: (answers: QuizAnswer[]) => void
   updateAnswer: (questionId: string, value: string | string[]) => void
   results: QuizResults | null
   setResults: (results: QuizResults) => void
   isLoading: boolean
-  setIsLoading: (loading: boolean) => void
+  setIsLoading: (isLoading: boolean) => void
 }
 
 const QuizContext = createContext<QuizContextType | undefined>(undefined)
@@ -22,17 +21,15 @@ export function QuizProvider({ children }: { children: ReactNode }) {
   const [isLoading, setIsLoading] = useState(false)
 
   const updateAnswer = (questionId: string, value: string | string[]) => {
-    setAnswers(prev => {
-      const existingIndex = prev.findIndex(a => a.questionId === questionId)
-      
-      if (existingIndex >= 0) {
-        const updated = [...prev]
-        updated[existingIndex] = { questionId, value }
-        return updated
-      } else {
-        return [...prev, { questionId, value }]
-      }
-    })
+    const existingAnswerIndex = answers.findIndex(a => a.questionId === questionId)
+    
+    if (existingAnswerIndex >= 0) {
+      const updatedAnswers = [...answers]
+      updatedAnswers[existingAnswerIndex] = { questionId, value }
+      setAnswers(updatedAnswers)
+    } else {
+      setAnswers([...answers, { questionId, value }])
+    }
   }
 
   return (
@@ -40,7 +37,6 @@ export function QuizProvider({ children }: { children: ReactNode }) {
       currentStep,
       setCurrentStep,
       answers,
-      setAnswers,
       updateAnswer,
       results,
       setResults,

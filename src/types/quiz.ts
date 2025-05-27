@@ -1,8 +1,15 @@
+export interface QuizOption {
+  id: string
+  value: string
+  label: string
+  image?: string
+}
+
 export interface QuizQuestion {
   id: string
-  type: 'single' | 'multiple' | 'slider' | 'radio'
   question: string
   description?: string
+  type: 'radio' | 'multiple' | 'slider'
   options?: QuizOption[]
   min?: number
   max?: number
@@ -11,22 +18,15 @@ export interface QuizQuestion {
   maxLabel?: string
 }
 
-export interface QuizOption {
-  id: string
-  label: string
-  value: string
-  image?: string
+export interface QuizData {
+  title: string
+  description: string
+  questions: QuizQuestion[]
 }
 
 export interface QuizAnswer {
   questionId: string
   value: string | string[]
-}
-
-export interface QuizData {
-  title: string
-  description: string
-  questions: QuizQuestion[]
 }
 
 export interface MattressRecommendation {
